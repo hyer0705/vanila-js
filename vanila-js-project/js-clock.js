@@ -1,4 +1,4 @@
-const clockClass = document.querySelector(".clock-container");
+const clockClass = document.querySelector(".js-clock");
 const clockTitle = clockClass.querySelector("h1");
 
 function getTime() {
