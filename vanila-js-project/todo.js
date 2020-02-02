@@ -6,6 +6,13 @@ const TODOS_LS = "toDos"; // localStorage 에 값을 저장할 때 쓰일 키 �
 
 const toDos = []; // toDos 라는 이름을 가진 array
 
+function deleteToDo(event) {
+    // console.log(event.target.parentNode);
+    const selectedBtn = event.target;
+    const selectedLi = selectedBtn.parentNode;
+    toDoList.removeChild(selectedLi);
+}
+
 function saveToDos() { // localStorage 에 저장할 때 쓰이는 함수
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos)); // 객체를 String으로 바꾸어 저장해준다.
 }
@@ -13,6 +20,9 @@ function saveToDos() { // localStorage 에 저장할 때 쓰이는 함수
 function paintToDo(text) { // 리스트 생성 및 localStorage에 저장할 때 쓰이는 함수 불러서 씀
     const li = document.createElement("li"); // li 생성
     const delBtn = document.createElement("button"); // button 생성
+    // delBtn 에 이벤트 부여
+    delBtn.addEventListener("click", deleteToDo);
+
     const span = document.createElement("span"); // span 생성
     const newId = "toDo" + (toDos.length + 1); // id = toDo1, toDo2 이런식으로 생성 됨
     delBtn.innerHTML = "X";
