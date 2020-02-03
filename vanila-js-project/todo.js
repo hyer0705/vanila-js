@@ -4,13 +4,20 @@ const toDoForm = document.querySelector(".js-toDoForm"), // to do 입력 폼
 
 const TODOS_LS = "toDos"; // localStorage 에 값을 저장할 때 쓰일 키 값
 
-const toDos = []; // toDos 라는 이름을 가진 array
+let toDos = []; // toDos 라는 이름을 가진 array
 
 function deleteToDo(event) {
     // console.log(event.target.parentNode);
     const selectedBtn = event.target;
     const selectedLi = selectedBtn.parentNode;
     toDoList.removeChild(selectedLi);
+
+    // 내가 지운 to do 리스트를 제외한 리스트를 filter 해줌
+    const cleanTodos = toDos.filter(function(todo){
+        return todo.id !== selectedLi.id;
+    });
+    toDos = cleanTodos;
+    saveToDos();
 }
 
 function saveToDos() { // localStorage 에 저장할 때 쓰이는 함수
